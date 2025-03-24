@@ -1,5 +1,5 @@
 <div align="center">
-# <image src="ClassIsland/Assets/AppLogo_AppLogo.svg" height="28"/> SysLite - Component DataBase
+#  SysLite - Component DataBase
 
 
 
