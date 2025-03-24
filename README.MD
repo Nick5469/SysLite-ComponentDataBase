@@ -1,5 +1,5 @@
 <div align="center">
-#  SysLite - Component DataBase
+# SysLite - Component DataBase
 
 
 
