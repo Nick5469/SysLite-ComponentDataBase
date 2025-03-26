@@ -1,0 +1,17 @@
+文件_删除,	D:\MOUNT\123\Windows\WinSxS\Manifests\amd64_microsoft-windows-htmlhelp-feature_31bf3856ad364e35_10.0.19041.1_none_401726ae5ac9d87e.manifest
+文件_删除,	D:\MOUNT\123\Windows\WinSxS\Manifests\wow64_microsoft-windows-htmlhelp-feature_31bf3856ad364e35_10.0.19041.1_none_4a6bd1008f2a9a79.manifest
+文件_删除,	D:\MOUNT\123\Windows\System32\itss.dll
+文件_删除,	D:\MOUNT\123\Windows\System32\itircl.dll
+文件_删除,	D:\MOUNT\123\Windows\SysWOW64\itss.dll
+文件_删除,	D:\MOUNT\123\Windows\SysWOW64\itircl.dll
+文件_删除,	D:\MOUNT\123\Windows\zh-CN\hh.exe.mui
+文件_删除,	D:\MOUNT\123\Windows\System32\zh-CN\hhctrl.ocx.mui
+文件_删除,	D:\MOUNT\123\Windows\SysWOW64\zh-cn\hh.exe.mui
+文件_删除,	D:\MOUNT\123\Windows\hh.exe
+文件_删除,	D:\MOUNT\123\Windows\System32\hhsetup.dll
+文件_删除,	D:\MOUNT\123\Windows\SysWOW64\hh.exe
+文件_删除,	D:\MOUNT\123\Windows\SysWOW64\hhsetup.dll
+文件_删除,	D:\MOUNT\123\Windows\WinSxS\Manifests\amd64_microsoft-windows-winhstb.resources_31bf3856ad364e35_10.0.19041.1_zh-cn_e7d24f91b45d7031.manifest
+文件_删除,	D:\MOUNT\123\Windows\zh-CN\winhlp32.exe.mui
+文件_删除,	D:\MOUNT\123\Windows\WinSxS\Manifests\amd64_microsoft-windows-winhstb_31bf3856ad364e35_10.0.19041.1_none_def71bdca8c4584c.manifest
+文件_删除,	D:\MOUNT\123\Windows\winhlp32.exe
