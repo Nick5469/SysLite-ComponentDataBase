@@ -1,0 +1,394 @@
+{
+    "name": "SysLite - Windows Component Database",
+    "version": "6.0.50326",
+    "APIMinVersion": "4",
+    "MinSupportVersion": "Windows Vista(5112)",
+    "link":"https://github.com/Nick5469/SysLite-ComponentDataBase",
+    "msg": [
+        {
+            "type": 1,
+            "level": 5,
+            "title": "系统版本过低",
+            "content": "WinUI3 不支持您的系统，请升级您的系统版本。\n\n最低版本要求：\n$(MinSystemVersion)"
+        },
+        {
+            "type": 2,
+            "level": 5,
+            "title": "不支持的系统版本",
+            "content": "组件库 不支持当前系统，请更换系统版本。\n\n最低支持版本：\n$(MinSupportVersion)"
+        },
+        {
+            "content": "由于Windows启动校验机制，目前仅支持移除API部分功能。"
+        },
+        {
+            "content": "会导致部分功能异常"
+        }
+    ],
+    "structure": [
+        {
+            "name": "系统",
+            "description": "系统组件",
+            "structure": [
+                {
+                    "name": "DWM",
+                    "description": "Desktop Window Manager",
+                    "list": [
+                        "DWM(桌面窗口管理器)",
+                        "DWM硬件加速(DWMInit)",
+                        "登录用户体验(Logon UI)",
+                        "Shell外壳(Shell Infrastructure Host)"
+                    ]
+                },
+                {
+                    "name": "任务管理器",
+                    "list": [
+                        "Windows Multimedia Library"
+                    ]
+                },
+                {
+                    "name": "资源管理器",
+                    "list": [
+                        "Windows Multimedia Library"
+                    ],
+                    "structure": [
+                        {
+                            "name": "桌面模式",
+                            "list": []
+                        },
+                        {
+                            "name": "开始菜单",
+                            "list": []
+                        },
+                        {
+                            "name": "任务栏",
+                            "list": []
+                        }
+                    ]
+                },
+                {
+                    "name": "输入法",
+                    "list": []
+                }
+            ]
+        },
+        {
+            "name": "Metro Apps",
+            "description": "Metro UI Apps",
+            "list": [
+                "Windows 商店(Mircosoft Store)"
+            ]
+        },
+        {
+            "name": "硬件与驱动",
+            "description": "提供硬件支持, 驱动程序",
+            "list": [
+                "添加驱动向导",
+                "蓝牙(Bluetooth)",
+                "打印机",
+                "智能卡(Smart Card)",
+                "USB 3G",
+                "Windows Hello"
+            ]
+        },
+        {
+            "name": "应用支持",
+            "description": "为支持运行某些应用而保留",
+            "structure": [
+                {
+                    "name": "壁纸引擎",
+                    "description": "例如Wallpaper Engineer, Windows PE.",
+                    "list": [
+                        "壁纸主机(Wallpaper Host)"
+                    ]
+                },
+                {
+                    "name": "PECMD",
+                    "description": "PE依赖此项",
+                    "list": [
+                        ""
+                    ]
+                }
+            ]
+        }
+    ],
+    "componentList": [
+        {
+            "name": "系统",
+            "description": "系统组件",
+            "componentList": [
+                {
+                    "name": "支持",
+                    "componentList": [
+                        {
+                            "name": "[+] 基于组件的服务(Component Based Servicing)",
+                            "path": {
+                                "dir": [
+                                    "Windows\\servicing"
+                                ],
+                                "reg": [
+                                    {
+                                        "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "[*] DNS客户端",
+                    "description": "",
+                    "path": {
+                        "e": [
+                            "dnsapi",
+                            "dnsrslvr",
+                            "dnscache",
+                            "dnsperf"
+                        ],
+                        "Services": [
+                            "Dnscache"
+                        ],
+                        "sxs": [
+                            "dns-client-minwin"
+                        ]
+                    }
+                },
+                {
+                    "name": "[*] DWM",
+                    "description": "Desktop Window Manager",
+                    "componentList": [
+                        {
+                            "name": "DWM(桌面窗口管理器)",
+                            "description": null,
+                            "path": {}
+                        },
+                        {
+                            "name": "DWM硬件加速(DWMInit)",
+                            "description": "DWM硬件加速组件",
+                            "path": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "[+] Microsoft 管理控制台(MMC)",
+                    "componentList": [
+                        {
+                            "name": "[+] MMC(32位)",
+                            "path": {
+                                "e": [
+                                    "syswow64\\ mmc"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "DNS管理控制单元",
+                            "path": {
+                                "e": [
+                                    "dnscmmc"
+                                ],
+                                "sxs": [
+                                    "dns-clientsnapin"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "[*] 沉浸式\"引导\"菜单",
+                    "description": null,
+                    "path": {
+                        "e": [
+                            "!winsxs\\ bootim"
+                        ],
+                        "sxs": [
+                            "bootux"
+                        ]
+                    }
+                },
+                {
+                    "name": "[*] 资源管理器",
+                    "description": "文件管理工具，用于浏览、管理和操作计算机中的文件、文件夹、磁盘驱动器以及网络资源，同时提供桌面、任务栏和开始菜单的图形界面支持。",
+                    "componentList": [
+                        {
+                            "name": "资源管理器(32位)",
+                            "path": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "多媒体",
+            "description": "提供更丰富多样的功能, 同时让系统更臃肿",
+            "componentList": [
+                {
+                    "name": "壁纸",
+                    "description": null,
+                    "componentList": [
+                        {
+                            "name": "壁纸主机(Wallpaper Host)",
+                            "description": "PE 不需要此项",
+                            "path": {
+                                "e": [
+                                    "wallpaperhost"
+                                ],
+                                "sxs": [
+                                    "wallpaperhost"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "壁纸 - 默认",
+                            "description": null,
+                            "path": {
+                                "dir": [
+                                    "Windows\\Web\\Wallpaper\\Windows",
+                                    "Windows\\Web\\4K\\Wallpaper\\Windows"
+                                ],
+                                "sxs": [
+                                    "wallpaper-windows"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "本地化",
+            "description": "提供多种语言选项, 让系统更易于使用",
+            "componentList": [
+                {
+                    "name": "语言",
+                    "description": "会完全移除对某种语言的支持，如果需要用某种语言进行读写等操作，请勿将其移除.",
+                    "componentList": [
+                        {
+                            "name": "输入法切换器(IME)",
+                            "description": null,
+                            "path": {
+                                "dir": [
+                                    "Windows\\InputMethod",
+                                    "Windows\\System32\\IME",
+                                    "Windows\\System32\\InputMethod",
+                                    "Windows\\SysWOW64\\IME",
+                                    "Windows\\SysWOW64\\InputMethod"
+                                ],
+                                "sxs": [
+                                    "eashared-imebroker"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "英语(en-us)",
+                            "description": null,
+                            "path": {
+                                "e": [
+                                    "folder: windows\\ !winsxs\\ en-us"
+                                ],
+                                "sxs": [
+                                    "en-us"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "接口(API)与库(Library)",
+            "description": "包含系统编程接口、通讯协议、功能支持等。非深度定制不建议移除。",
+            "componentList": [
+                {
+                    "name": "[*] Windows Event Log API",
+                    "description": "访问和管理 Windows 事件日志的编程接口。",
+                    "link": [
+                        "https://learn.microsoft.com/zh-cn/windows/win32/wes/windows-event-log-functions"
+                    ],
+                    "path": {
+                        "e": [
+                            "wevtapi"
+                        ],
+                        "sxs": [
+                            "eventlog-api"
+                        ]
+                    }
+                },
+                {
+                    "name": "[*] Windows Multimedia Library",
+                    "description": "音频播放、录音、MIDI 设备控制等多媒体功能的支持。",
+                    "link": [
+                        ""
+                    ],
+                    "path": {
+                        "e": [
+                            "winmm"
+                        ],
+                        "sxs": [
+                            "winmmbase"
+                        ]
+                    }
+                },
+                {
+                    "name": "[+] Windows NT ASN.1 Library",
+                    "description": "ASN.1 是一种用于描述数据结构的标准，广泛应用于网络协议、加密和安全领域。",
+                    "link": [
+                        ""
+                    ],
+                    "path": {
+                        "e": [
+                            "ntasn1"
+                        ],
+                        "sxs": []
+                    }
+                },
+                {
+                    "name": "[+] Windows CryptoAPI(Cryptographic)",
+                    "description": "加密、解密、数字签名和证书管理。",
+                    "msg": [
+                        3
+                    ],
+                    "componentList": [
+                        {
+                            "name": "[*] SSL/TLS",
+                            "description": "提供安全通道(SSL/TLS)支持，用于加密网络通信。",
+                            "path": {
+                                "e": [
+                                    "schannel"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "[*] RSA 加密",
+                            "description": "提供 RSA 加密算法的实现。",
+                            "msg": [
+                                4
+                            ],
+                            "path": {
+                                "e": [
+                                    "rsaenh"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "[*] ",
+                    "description": "",
+                    "link": [
+                        ""
+                    ],
+                    "path": {
+                        "e": [],
+                        "sxs": []
+                    }
+                }
+            ]
+        },
+        {
+            "name":"资源",
+            "description":"包含部分消息表资源",
+            "componentList":[
+                
+            ]
+        }
+    ]
+}
