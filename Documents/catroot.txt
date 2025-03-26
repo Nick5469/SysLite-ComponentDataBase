@@ -1,0 +1,14 @@
+CatRoot文件夹（内有1个文件夹9个文件）：
+
+\Windows\System32\CatRoot\{F750E6C3-38EE-11D1-85E5-00C04FC295EE}\
+Microsoft-<name>-Package~31bf3856ad364e35~amd64~~10.0.19041.264.cat
+
+OneCore-CoreSystem-Core-merged
+Windows-Common-Drivers-merged
+Windows-Common-Drivers-Package-windows
+Windows-CoreSystem-UnifiedBPM
+Windows-Foundation-Group-merged
+Windows-Pnp-merged
+Windows-SXS-Runtime
+Windows-Winpe-Dual-Drivers
+Windows-WinPE-SKU-Foundation-merged

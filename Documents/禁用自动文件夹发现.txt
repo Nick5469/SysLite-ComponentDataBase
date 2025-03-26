@@ -1,0 +1,15 @@
+清空资源管理器视图数据库，并为所有文件夹创建通用视图
+设置 NotSpecified 将禁用自动文件夹发现功能
+
+注册表路径
+HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\
+
+BagMRU
+  Lup表
+Bags (外壳视图)
+  每个文件夹的设置
+
+
+操作方法
+定位到注册项后先删除这两项，后新建
+\Bags\AllFolders\Shell  FolderType [REG_SZ] NotSpecified

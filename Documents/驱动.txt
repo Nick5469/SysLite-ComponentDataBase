@@ -1,0 +1,11 @@
+INF路径
+Windows\INF
+
+驱动路径
+Windows\System32\drivers\
+
+文件存储路径
+Windows\System32\DriverStore\FileRepository\
+
+注册表 - 服务路径
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\
