@@ -1,38 +1,37 @@
 ---
 name: Bug 反馈
 about: 遇到Bug请在这里反馈。
-title: "[BUG]"
-labels: Bug, 新
+labels: [· Bug, 新]
 assignees: Nick5469
 
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+body:
+- type: checkboxes
+  id: "yml-1"
+  attributes:
+    label: "检查项"
+    description: "请逐个检查下列项目，并勾选确认。"
+    options:
+    - label: "我已在 [Issues 页面](https://github.com/Nick5469/SysLite-ComponentDataBaes/issues?q=is%3Aissue+) 和 [常见&难检反馈及问题列表]() 中搜索，确认了这一 Bug 未被提交过。"
+      required: true
+- type: textarea
+  id: "yml-2"
+  attributes:
+    label: 描述
+    description: "详细描述该 Bug 的具体表现。"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-3"
+  attributes:
+    label: 重现步骤
+    description: "详细描述要怎么操作才能再次触发这个 Bug。"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-4"
+  attributes:
+    label: 日志与附件
+    description: "上传 SysLite 文件夹中的 *.log 文件。[日志在哪？]()"
+    placeholder: "先点击这个文本框，然后再将文件直接拖拽到文本框中以上传。"
+  validations:
+    required: false
