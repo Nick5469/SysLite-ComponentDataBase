@@ -1,4 +1,3 @@
----
 name: Bug 反馈
 about: 遇到Bug请在这里反馈。
 labels: [· Bug, 新]
