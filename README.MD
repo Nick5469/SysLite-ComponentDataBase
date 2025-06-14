@@ -1,6 +1,6 @@
 <div align="center">
-<h1> SysLite - Component DataBase </h1>
 
+# <image src="Assets/LOGO.png" height="28"/> SysLite - Component DataBase
 
 本数据库包含从`Windows XP`到`Windows 11`的系统组件信息，为第三方提供调用支持。
 
