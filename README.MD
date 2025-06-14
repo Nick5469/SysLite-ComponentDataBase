@@ -1,4 +1,4 @@
-<div align=“center”>
+<div align="center">
 
 <image src="Assets/LOGO.png" height="128"/>
 <h1> SysLite - Component DataBase </h1>
