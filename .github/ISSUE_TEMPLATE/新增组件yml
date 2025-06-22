@@ -1,0 +1,36 @@
+name: "新增组件"
+description: "请求添加新的系统组件。"
+labels: "新, 组件"
+body:
+- type: checkboxes
+  id: "yml-1"
+  attributes:
+    label: "检查项"
+    description: "请逐个检查下列项目，并勾选确认。"
+    options:
+    - label: "我已在 [Issues 页面](https://github.com/Nick5469/SysLite-ComponentDataBaes/issues?q=is%3Aissue+) 和 [常见&难检反馈及问题列表]() 中搜索，确认了这一 Bug 未被提交过。"
+      required: true
+- type: textarea
+  id: "yml-2"
+  attributes:
+    label: "组件基本信息"
+    description: "填写组件的基本信息"
+    placeholder: "组件名\n组件描述\n分类\n适用操作系统\n兼容性"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-3"
+  attributes:
+    label: "组件路径"
+    description: "组件所包含的路径以及链接信息"
+    "placeholder": "通用路径\n文件夹路径\nWinSxs路径\n服务路径\n注册表路径"
+  validations:
+    required: true
+- type: textarea
+  id: "yml-4"
+  attributes:
+    label: "附件"
+    description: "如果能提交正规的组件格式文件就更好了！"
+    placeholder: "先点击这个文本框，然后再将文件直接拖拽到文本框中以上传。"
+  validations:
+    required: false
