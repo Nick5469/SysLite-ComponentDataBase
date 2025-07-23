@@ -1,9 +1,9 @@
 {
-    "name": "SysLite - Windows Component Database",
-    "version": "6.0.50721",
+    "name": "SysLite - Component Database",
+    "version": "6.0.50723",
     "APIMinVersion": "6",
     "MinSupportVersion": "Windows Vista(5112)",
-    "link": "https://github.com/Nick5469/SysLite-ComponentDataBase",
+    "repo": "https://github.com/Nick5469/SysLite-ComponentDataBase",
     "msg": [
         {
             "type": 1,
@@ -124,13 +124,13 @@
         }
     ],
     "pathConfig": {
-        "e":{
-            "path":[
-                "{path} {key}"
+        "e": {
+            "path": [
+                "{path}{key}"
             ]
         },
-        "dir":{
-            "path":[
+        "dir": {
+            "path": [
                 "{path} folder:{key}"
             ]
         },
@@ -156,9 +156,30 @@
                 "{path}Windows\\WinSxS\\FileMaps\\ {key}"
             ],
             "reg": [
-                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
-                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
-                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\"
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
+                    "key": null,
+                    "search": [
+                        "amd64"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
+                    "key": null,
+                    "search": [
+                        "amd64"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\",
+                    "key": null,
+                    "search": [
+                        "amd64"
+                    ],
+                    "command": "delete"
+                }
             ]
         },
         "sxs32": {
@@ -169,9 +190,33 @@
                 "{path}Windows\\WinSxS\\Manifests\\wow64 {key}"
             ],
             "reg": [
-                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
-                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
-                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\"
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
+                    "key": null,
+                    "search": [
+                        "wow64",
+                        "x86"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
+                    "key": null,
+                    "search": [
+                        "wow64",
+                        "x86"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\",
+                    "key": null,
+                    "search": [
+                        "wow64",
+                        "x86"
+                    ],
+                    "command": "delete"
+                }
             ]
         }
     },
@@ -362,7 +407,9 @@
                                 ],
                                 "reg": [
                                     {
-                                        "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing"
+                                        "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing",
+                                        "key":null,
+                                        "command":"delete"
                                     }
                                 ]
                             }

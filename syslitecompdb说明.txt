@@ -1,0 +1,26 @@
+[sys(32/64)]
+通常系统组件路径
+包括
+(64)ProgramData\Microsoft\Windows\Start Menu
+ProgramData\Microsoft\UEV
+C:\Windows\servicing\Packages
+Windows\System32\CatRoot
+Windows\System32
+Windows\SystemResources
+
+[sxs(32/64)]
+通常系统组件组件池路径
+包括
+Windows\WinSxs
+Windows\WinSxs\Manifests
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\
+HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\Components
+HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\VersionedIndex\*\ComponentFamilies
+
+
+FOLDER
+Windows\WinSxS\FileMaps
+
+REG
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\
