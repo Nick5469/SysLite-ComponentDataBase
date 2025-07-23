@@ -1,9 +1,9 @@
 {
     "name": "SysLite - Windows Component Database",
-    "version": "6.0.50326",
-    "APIMinVersion": "4",
+    "version": "6.0.50721",
+    "APIMinVersion": "6",
     "MinSupportVersion": "Windows Vista(5112)",
-    "link":"https://github.com/Nick5469/SysLite-ComponentDataBase",
+    "link": "https://github.com/Nick5469/SysLite-ComponentDataBase",
     "msg": [
         {
             "type": 1,
@@ -22,6 +22,11 @@
         },
         {
             "content": "会导致部分功能异常"
+        },
+        {
+            "title": "无效组件",
+            "content": "该组件的相关核心内容已经损坏，组件功能可能已经失效。",
+            "help": "（有关更多的内容）LINK"
         }
     ],
     "structure": [
@@ -111,7 +116,237 @@
             ]
         }
     ],
+    "group": [
+        {
+            "name": "办公",
+            "description": "提供办公软件支持",
+            "color": "#FF00FF"
+        }
+    ],
+    "pathConfig": {
+        "e":{
+            "path":[
+                "{path} {key}"
+            ]
+        },
+        "dir":{
+            "path":[
+                "{path} folder:{key}"
+            ]
+        },
+        "sys64": {
+            "path": [
+                "{path}ProgramData\\Microsoft\\Windows\\Start Menu\\ {key}?.",
+                "{path}ProgramData\\Microsoft\\UEV\\ {key}",
+                "{path}Windows\\servicing\\Packages\\ {key}",
+                "{path}Windows\\System32\\ {key}|{key}*.mui",
+                "{path}Windows\\System32\\CatRoot\\ {key}",
+                "{path}Windows\\SystemResources {key}"
+            ]
+        },
+        "sys32": {
+            "path": [
+                "{path}Windows\\SysWOW64\\ {key}|{key}.mui"
+            ]
+        },
+        "sxs64": {
+            "path": [
+                "folder:{path}Windows\\WinSxS\\ amd64 {key}",
+                "{path}Windows\\WinSxS\\Manifests\\ amd64 {key}",
+                "{path}Windows\\WinSxS\\FileMaps\\ {key}"
+            ],
+            "reg": [
+                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
+                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
+                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\"
+            ]
+        },
+        "sxs32": {
+            "path": [
+                "folder:{path}Windows\\WinSxS\\x86 {key}",
+                "folder:{path}Windows\\WinSxS\\wow64 {key}",
+                "{path}Windows\\WinSxS\\Manifests\\x86 {key}",
+                "{path}Windows\\WinSxS\\Manifests\\wow64 {key}"
+            ],
+            "reg": [
+                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
+                "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
+                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\"
+            ]
+        }
+    },
     "componentList": [
+        {
+            "name": "测试组件集",
+            "description": "该项目为预览版测试专用，请谨慎使用。",
+            "componentList": [
+                {
+                    "name": "注册表编辑器",
+                    "description": "查看、编辑和管理Windows注册表的工具.",
+                    "arch": {
+                        "type": "intel",
+                        "bit": 64
+                    },
+                    "path": {
+                        "e": [
+                            "Windows\\ regedit.exe|regedit.exe.mui"
+                        ],
+                        "sys64": [
+                            "regedit"
+                        ],
+                        "sxs64": [
+                            "registry-editor"
+                        ]
+                    },
+                    "componentList": [
+                        {
+                            "name": "注册表编辑器(32位)",
+                            "arch": {
+                                "type": "intel",
+                                "bit": 32
+                            },
+                            "path": {
+                                "sys32": [
+                                    "regedit"
+                                ],
+                                "sxs32": [
+                                    "registry-editor"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "记事本",
+                    "description": "Windows 内置的文本编辑器，用于创建和编辑纯文本文件.",
+                    "arch": {
+                        "type": "intel",
+                        "bit": 64
+                    },
+                    "path": {
+                        "sys64": [
+                            "notepad"
+                        ],
+                        "sxs64": [
+                            "notepad"
+                        ]
+                    },
+                    "componentList": [
+                        {
+                            "name": "记事本(32位)",
+                            "arch": {
+                                "type": "intel",
+                                "bit": 32
+                            },
+                            "path": {
+                                "sys32": [
+                                    "notepad"
+                                ],
+                                "sxs32": [
+                                    "notepad"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Metro 应用",
+            "description": null,
+            "componentList": []
+        },
+        {
+            "name": "多媒体",
+            "description": "提供更丰富多样的功能, 同时让系统更臃肿",
+            "componentList": [
+                {
+                    "name": "壁纸",
+                    "description": null,
+                    "componentList": [
+                        {
+                            "name": "壁纸主机(Wallpaper Host)",
+                            "description": "PE 不需要此项",
+                            "path": {
+                                "e": [
+                                    "wallpaperhost"
+                                ],
+                                "sxs": [
+                                    "wallpaperhost"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "壁纸 - 默认",
+                            "description": null,
+                            "path": {
+                                "dir": [
+                                    "Windows\\Web\\Wallpaper\\Windows",
+                                    "Windows\\Web\\4K\\Wallpaper\\Windows"
+                                ],
+                                "sxs": [
+                                    "wallpaper-windows"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "本地化",
+            "description": "提供多种语言选项, 让系统更易于使用",
+            "componentList": [
+                {
+                    "name": "Microsoft 用户经验虚拟化（UE-V, User Experience Virtualization）",
+                    "description": "UE-V 是一种用户体验虚拟化技术，允许用户在不同设备上保持一致的应用程序设置和 Windows 桌面环境。",
+                    "path": {
+                        "dir": [
+                            "ProgramData\\Microsoft\\UEV"
+                        ]
+                    }
+                },
+                {
+                    "name": "语言",
+                    "description": "会完全移除对某种语言的支持，如果需要用某种语言进行读写等操作，请勿将其移除.",
+                    "componentList": [
+                        {
+                            "name": "输入法切换器(IME)",
+                            "description": null,
+                            "path": {
+                                "dir": [
+                                    "Windows\\InputMethod",
+                                    "Windows\\System32\\IME",
+                                    "Windows\\System32\\InputMethod",
+                                    "Windows\\SysWOW64\\IME",
+                                    "Windows\\SysWOW64\\InputMethod"
+                                ],
+                                "sxs": [
+                                    "eashared-imebroker"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "英语(en-us)",
+                            "description": null,
+                            "path": {
+                                "e": [
+                                    "folder: windows\\ !winsxs\\ en-us"
+                                ],
+                                "sxs": [
+                                    "en-us"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "系统应用",
+            "description": null,
+            "componentList": []
+        },
         {
             "name": "系统",
             "description": "系统组件",
@@ -131,6 +366,12 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "name": "[*] Win32 Emulation on NT64"
+                        },
+                        {
+                            "name": "[*] 适用于 Windows 的 Linux 子系统(WSL)"
                         }
                     ]
                 },
@@ -217,84 +458,16 @@
             ]
         },
         {
-            "name": "多媒体",
-            "description": "提供更丰富多样的功能, 同时让系统更臃肿",
-            "componentList": [
-                {
-                    "name": "壁纸",
-                    "description": null,
-                    "componentList": [
-                        {
-                            "name": "壁纸主机(Wallpaper Host)",
-                            "description": "PE 不需要此项",
-                            "path": {
-                                "e": [
-                                    "wallpaperhost"
-                                ],
-                                "sxs": [
-                                    "wallpaperhost"
-                                ]
-                            }
-                        },
-                        {
-                            "name": "壁纸 - 默认",
-                            "description": null,
-                            "path": {
-                                "dir": [
-                                    "Windows\\Web\\Wallpaper\\Windows",
-                                    "Windows\\Web\\4K\\Wallpaper\\Windows"
-                                ],
-                                "sxs": [
-                                    "wallpaper-windows"
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
+            "name": "网络"
         },
         {
-            "name": "本地化",
-            "description": "提供多种语言选项, 让系统更易于使用",
-            "componentList": [
-                {
-                    "name": "语言",
-                    "description": "会完全移除对某种语言的支持，如果需要用某种语言进行读写等操作，请勿将其移除.",
-                    "componentList": [
-                        {
-                            "name": "输入法切换器(IME)",
-                            "description": null,
-                            "path": {
-                                "dir": [
-                                    "Windows\\InputMethod",
-                                    "Windows\\System32\\IME",
-                                    "Windows\\System32\\InputMethod",
-                                    "Windows\\SysWOW64\\IME",
-                                    "Windows\\SysWOW64\\InputMethod"
-                                ],
-                                "sxs": [
-                                    "eashared-imebroker"
-                                ]
-                            }
-                        },
-                        {
-                            "name": "英语(en-us)",
-                            "description": null,
-                            "path": {
-                                "e": [
-                                    "folder: windows\\ !winsxs\\ en-us"
-                                ],
-                                "sxs": [
-                                    "en-us"
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
+            "name": "驱动程序"
         },
         {
-            "name": "接口(API)与库(Library)",
+            "name": "硬件支持"
+        },
+        {
+            "name": "编程接口与通讯协议",
             "description": "包含系统编程接口、通讯协议、功能支持等。非深度定制不建议移除。",
             "componentList": [
                 {
@@ -384,11 +557,9 @@
             ]
         },
         {
-            "name":"资源",
-            "description":"包含部分消息表资源",
-            "componentList":[
-                
-            ]
+            "name": "其他",
+            "description": "包含部分消息表资源",
+            "componentList": []
         }
     ]
 }
