@@ -4,149 +4,136 @@
     "APIMinVersion": "6",
     "MinSupportVersion": "Windows Vista(5112)",
     "repo": "https://github.com/Nick5469/SysLite-ComponentDataBase",
-    "msg": [
+    "itemList": [
         {
-            "type": 1,
-            "level": 5,
-            "title": "系统版本过低",
-            "content": "WinUI3 不支持您的系统，请升级您的系统版本。\n\n最低版本要求：\n$(MinSystemVersion)"
+            "name": "组件名称",
+            "description": "组件的内部名称或常用的表述形式。",
+            "lock": true,
+            "path": "name"
         },
         {
-            "type": 2,
-            "level": 5,
-            "title": "不支持的系统版本",
-            "content": "组件库 不支持当前系统，请更换系统版本。\n\n最低支持版本：\n$(MinSupportVersion)"
+            "name": "显示名称",
+            "description": "组件的译名。",
+            "lock": false,
+            "path": "display"
         },
         {
-            "content": "由于Windows启动校验机制，目前仅支持移除API部分功能。"
+            "name": "组件描述",
+            "description": "对组件功能的解释。",
+            "lock": false,
+            "path": "description"
         },
         {
-            "content": "会导致部分功能异常"
+            "name": "占用",
+            "description": "组件的存储占用情况。",
+            "lock": false,
+            "path": "_size"
         },
         {
-            "title": "无效组件",
-            "content": "该组件的相关核心内容已经损坏，组件功能可能已经失效。",
-            "help": "（有关更多的内容）LINK"
-        }
-    ],
-    "structure": [
-        {
-            "name": "系统",
-            "description": "系统组件",
-            "structure": [
-                {
-                    "name": "DWM",
-                    "description": "Desktop Window Manager",
-                    "list": [
-                        "DWM(桌面窗口管理器)",
-                        "DWM硬件加速(DWMInit)",
-                        "登录用户体验(Logon UI)",
-                        "Shell外壳(Shell Infrastructure Host)"
-                    ]
-                },
-                {
-                    "name": "任务管理器",
-                    "list": [
-                        "Windows Multimedia Library"
-                    ]
-                },
-                {
-                    "name": "资源管理器",
-                    "list": [
-                        "Windows Multimedia Library"
-                    ],
-                    "structure": [
-                        {
-                            "name": "桌面模式",
-                            "list": []
-                        },
-                        {
-                            "name": "开始菜单",
-                            "list": []
-                        },
-                        {
-                            "name": "任务栏",
-                            "list": []
-                        }
-                    ]
-                },
-                {
-                    "name": "输入法",
-                    "list": []
-                }
-            ]
+            "name": "架构",
+            "description": "组件文件架构（显示'-'代表未知）。",
+            "lock": false,
+            "path": "arch.bit"
         },
         {
-            "name": "Metro Apps",
-            "description": "Metro UI Apps",
-            "list": [
-                "Windows 商店(Mircosoft Store)"
-            ]
+            "name": "兼容性",
+            "description": "组件关联的兼容性信息",
+            "lock": true,
+            "path": "compatibilityList"
         },
         {
-            "name": "硬件与驱动",
-            "description": "提供硬件支持, 驱动程序",
-            "list": [
-                "添加驱动向导",
-                "蓝牙(Bluetooth)",
-                "打印机",
-                "智能卡(Smart Card)",
-                "USB 3G",
-                "Windows Hello"
-            ]
-        },
-        {
-            "name": "应用支持",
-            "description": "为支持运行某些应用而保留",
-            "structure": [
-                {
-                    "name": "壁纸引擎",
-                    "description": "例如Wallpaper Engineer, Windows PE.",
-                    "list": [
-                        "壁纸主机(Wallpaper Host)"
-                    ]
-                },
-                {
-                    "name": "PECMD",
-                    "description": "PE依赖此项",
-                    "list": [
-                        ""
-                    ]
-                }
-            ]
-        }
-    ],
-    "group": [
-        {
-            "name": "办公",
-            "description": "提供办公软件支持",
-            "color": "#FF00FF"
+            "name": "依赖",
+            "description": "组件关的依赖关系",
+            "lock": true,
+            "path": "dependencyList"
         }
     ],
     "pathConfig": {
-        "e": {
-            "path": [
-                "{path}{key}"
-            ]
-        },
         "dir": {
             "path": [
-                "{path} folder:{key}"
+                "folder:{path} {key}"
             ]
         },
+        "lang": {
+            "path": [
+                "folder:{path}Windows\\System32\\{key}"
+            ]
+        },
+        "search": [
+            "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components",
+            "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies",
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners"
+        ],
         "sys64": {
             "path": [
                 "{path}ProgramData\\Microsoft\\Windows\\Start Menu\\ {key}?.",
                 "{path}ProgramData\\Microsoft\\UEV\\ {key}",
-                "{path}Windows\\servicing\\Packages\\ {key}",
-                "{path}Windows\\System32\\ {key}|{key}*.mui",
-                "{path}Windows\\System32\\CatRoot\\ {key}",
+                "parent:{path}Windows\\System32\\ {key}",
+                "{path}Windows\\System32\\ {key}*.mui",
                 "{path}Windows\\SystemResources {key}"
+            ]
+        },
+        "pkg64": {
+            "path": [
+                "{path}Windows\\servicing\\Packages\\ {key}",
+                "{path}Windows\\System32\\CatRoot\\ {key}"
+            ],
+            "reg": [
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageIndex",
+                    "search": [
+                        "{key}",
+                        "amd64"
+                    ]
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect",
+                    "search": [
+                        "{key}",
+                        "amd64"
+                    ]
+                }
+            ]
+        },
+        "pkg32": {
+            "path": [
+                "{path}Windows\\servicing\\Packages\\ {key} wow64|x86",
+                "{path}Windows\\SysWow64\\CatRoot\\ {key}"
+            ],
+            "reg": [
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageIndex",
+                    "search": [
+                        "{key}",
+                        "wow64"
+                    ]
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect",
+                    "search": [
+                        "{key}",
+                        "wow64"
+                    ]
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageIndex",
+                    "search": [
+                        "{key}",
+                        "x86"
+                    ]
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect",
+                    "search": [
+                        "{key}",
+                        "x86"
+                    ]
+                }
             ]
         },
         "sys32": {
             "path": [
-                "{path}Windows\\SysWOW64\\ {key}|{key}.mui"
+                "parent:{path}Windows\\SysWOW64\\ {key}|{key}.mui"
             ]
         },
         "sxs64": {
@@ -157,25 +144,28 @@
             ],
             "reg": [
                 {
-                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components",
                     "key": null,
                     "search": [
+                        "{key}",
                         "amd64"
                     ],
                     "command": "delete"
                 },
                 {
-                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies",
                     "key": null,
                     "search": [
+                        "{key}",
                         "amd64"
                     ],
                     "command": "delete"
                 },
                 {
-                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\",
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners",
                     "key": null,
                     "search": [
+                        "{key}",
                         "amd64"
                     ],
                     "command": "delete"
@@ -191,28 +181,55 @@
             ],
             "reg": [
                 {
-                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components\\",
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components",
                     "key": null,
                     "search": [
-                        "wow64",
+                        "{key}",
+                        "wow64"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies",
+                    "key": null,
+                    "search": [
+                        "{key}",
+                        "wow64"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners",
+                    "key": null,
+                    "search": [
+                        "{key}",
+                        "wow64"
+                    ],
+                    "command": "delete"
+                },
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components",
+                    "key": null,
+                    "search": [
+                        "{key}",
                         "x86"
                     ],
                     "command": "delete"
                 },
                 {
-                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies\\",
+                    "path": "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies",
                     "key": null,
                     "search": [
-                        "wow64",
+                        "{key}",
                         "x86"
                     ],
                     "command": "delete"
                 },
                 {
-                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners\\",
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners",
                     "key": null,
                     "search": [
-                        "wow64",
+                        "{key}",
                         "x86"
                     ],
                     "command": "delete"
@@ -222,19 +239,21 @@
     },
     "componentList": [
         {
-            "name": "测试组件集",
+            "name": "Test Unit",
+            "display": "测试组件集",
             "description": "该项目为预览版测试专用，请谨慎使用。",
             "componentList": [
                 {
-                    "name": "注册表编辑器",
-                    "description": "查看、编辑和管理Windows注册表的工具.",
+                    "name": "Regedit",
+                    "display": "注册表编辑器",
+                    "description": "查看、编辑和管理Windows注册表的工具。",
                     "arch": {
                         "type": "intel",
                         "bit": 64
                     },
                     "path": {
                         "e": [
-                            "Windows\\ regedit.exe|regedit.exe.mui"
+                            "parent:{path}Windows\\ regedit"
                         ],
                         "sys64": [
                             "regedit"
@@ -245,7 +264,8 @@
                     },
                     "componentList": [
                         {
-                            "name": "注册表编辑器(32位)",
+                            "name": "Regedit - 32-bit",
+                            "display": "注册表编辑器",
                             "arch": {
                                 "type": "intel",
                                 "bit": 32
@@ -262,351 +282,268 @@
                     ]
                 },
                 {
-                    "name": "记事本",
-                    "description": "Windows 内置的文本编辑器，用于创建和编辑纯文本文件.",
-                    "arch": {
-                        "type": "intel",
-                        "bit": 64
-                    },
-                    "path": {
-                        "sys64": [
-                            "notepad"
-                        ],
-                        "sxs64": [
-                            "notepad"
-                        ]
-                    },
-                    "componentList": [
-                        {
-                            "name": "记事本(32位)",
-                            "arch": {
-                                "type": "intel",
-                                "bit": 32
-                            },
-                            "path": {
-                                "sys32": [
-                                    "notepad"
-                                ],
-                                "sxs32": [
-                                    "notepad"
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Metro 应用",
-            "description": null,
-            "componentList": []
-        },
-        {
-            "name": "多媒体",
-            "description": "提供更丰富多样的功能, 同时让系统更臃肿",
-            "componentList": [
-                {
-                    "name": "壁纸",
+                    "name": "许可",
                     "description": null,
-                    "componentList": [
-                        {
-                            "name": "壁纸主机(Wallpaper Host)",
-                            "description": "PE 不需要此项",
-                            "path": {
-                                "e": [
-                                    "wallpaperhost"
-                                ],
-                                "sxs": [
-                                    "wallpaperhost"
-                                ]
-                            }
-                        },
-                        {
-                            "name": "壁纸 - 默认",
-                            "description": null,
-                            "path": {
-                                "dir": [
-                                    "Windows\\Web\\Wallpaper\\Windows",
-                                    "Windows\\Web\\4K\\Wallpaper\\Windows"
-                                ],
-                                "sxs": [
-                                    "wallpaper-windows"
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "本地化",
-            "description": "提供多种语言选项, 让系统更易于使用",
-            "componentList": [
-                {
-                    "name": "Microsoft 用户经验虚拟化（UE-V, User Experience Virtualization）",
-                    "description": "UE-V 是一种用户体验虚拟化技术，允许用户在不同设备上保持一致的应用程序设置和 Windows 桌面环境。",
                     "path": {
                         "dir": [
-                            "ProgramData\\Microsoft\\UEV"
+                            "Windows\\System32\\ Licenses"
                         ]
                     }
-                },
-                {
-                    "name": "语言",
-                    "description": "会完全移除对某种语言的支持，如果需要用某种语言进行读写等操作，请勿将其移除.",
-                    "componentList": [
-                        {
-                            "name": "输入法切换器(IME)",
-                            "description": null,
-                            "path": {
-                                "dir": [
-                                    "Windows\\InputMethod",
-                                    "Windows\\System32\\IME",
-                                    "Windows\\System32\\InputMethod",
-                                    "Windows\\SysWOW64\\IME",
-                                    "Windows\\SysWOW64\\InputMethod"
-                                ],
-                                "sxs": [
-                                    "eashared-imebroker"
-                                ]
-                            }
-                        },
-                        {
-                            "name": "英语(en-us)",
-                            "description": null,
-                            "path": {
-                                "e": [
-                                    "folder: windows\\ !winsxs\\ en-us"
-                                ],
-                                "sxs": [
-                                    "en-us"
-                                ]
-                            }
-                        }
-                    ]
                 }
             ]
         },
         {
-            "name": "系统应用",
-            "description": null,
-            "componentList": []
-        },
-        {
-            "name": "系统",
+            "name": "System",
+            "display": "系统",
             "description": "系统组件",
             "componentList": [
                 {
-                    "name": "支持",
+                    "name": "MsftEdit Control",
+                    "display": "富文本编辑控件",
+                    "description": "为软件提供文本编辑控件。",
                     "componentList": [
                         {
-                            "name": "[+] 基于组件的服务(Component Based Servicing)",
+                            "name": "Notepad",
+                            "display": "记事本",
+                            "description": "Windows 内置的文本编辑器，用于创建和编辑文本文件。",
+                            "arch": {
+                                "type": "intel",
+                                "bit": 64
+                            },
+                            "path": {
+                                "sys64": [
+                                    "notepad"
+                                ],
+                                "sxs64": [
+                                    "notepad"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "WordPad",
+                            "display": "写字板",
+                            "arch": {
+                                "type": "intel",
+                                "bit": 64
+                            },
                             "path": {
                                 "dir": [
-                                    "Windows\\servicing"
+                                    "Program Files\\Windows NT\\Accessories"
                                 ],
-                                "reg": [
-                                    {
-                                        "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing",
-                                        "key":null,
-                                        "command":"delete"
+                                "sys64": [
+                                    "write.exe",
+                                    "wordpad"
+                                ],
+                                "sxs64": [
+                                    "wordpad"
+                                ],
+                                "pkg64": [
+                                    "wordpad"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "MsftEdit Control - 32-bit",
+                            "display": "富文本编辑控件",
+                            "componentList": [
+                                {
+                                    "name": "Notepad - 32-bit",
+                                    "display": "记事本",
+                                    "arch": {
+                                        "type": "intel",
+                                        "bit": 32
+                                    },
+                                    "path": {
+                                        "sys32": [
+                                            "notepad"
+                                        ],
+                                        "sxs32": [
+                                            "notepad"
+                                        ]
                                     }
-                                ]
-                            }
-                        },
-                        {
-                            "name": "[*] Win32 Emulation on NT64"
-                        },
-                        {
-                            "name": "[*] 适用于 Windows 的 Linux 子系统(WSL)"
+                                },
+                                {
+                                    "name": "WordPad - 32-bit",
+                                    "display": "写字板",
+                                    "arch": {
+                                        "type": "intel",
+                                        "bit": 32
+                                    },
+                                    "path": {
+                                        "dir": [
+                                            "Program Files (x86)\\Windows NT\\Accessories"
+                                        ],
+                                        "sys64": [
+                                            "write.exe",
+                                            "wordpad"
+                                        ],
+                                        "sxs32": [
+                                            "wordpad"
+                                        ],
+                                        "pkg32": [
+                                            "wordpad"
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    "name": "[*] DNS客户端",
-                    "description": "",
-                    "path": {
-                        "e": [
-                            "dnsapi",
-                            "dnsrslvr",
-                            "dnscache",
-                            "dnsperf"
-                        ],
-                        "Services": [
-                            "Dnscache"
-                        ],
-                        "sxs": [
-                            "dns-client-minwin"
-                        ]
-                    }
-                },
-                {
-                    "name": "[*] DWM",
-                    "description": "Desktop Window Manager",
-                    "componentList": [
-                        {
-                            "name": "DWM(桌面窗口管理器)",
-                            "description": null,
-                            "path": {}
-                        },
-                        {
-                            "name": "DWM硬件加速(DWMInit)",
-                            "description": "DWM硬件加速组件",
-                            "path": {}
-                        }
-                    ]
-                },
-                {
-                    "name": "[+] Microsoft 管理控制台(MMC)",
-                    "componentList": [
-                        {
-                            "name": "[+] MMC(32位)",
-                            "path": {
-                                "e": [
-                                    "syswow64\\ mmc"
-                                ]
-                            }
-                        },
-                        {
-                            "name": "DNS管理控制单元",
-                            "path": {
-                                "e": [
-                                    "dnscmmc"
-                                ],
-                                "sxs": [
-                                    "dns-clientsnapin"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "[*] 沉浸式\"引导\"菜单",
+                    "name": "Boot Immersive Menus",
+                    "display": "沉浸式\"引导\"菜单",
                     "description": null,
                     "path": {
-                        "e": [
-                            "!winsxs\\ bootim"
+                        "sys64": [
+                            "bootim",
+                            "bootux"
                         ],
-                        "sxs": [
+                        "sxs64": [
                             "bootux"
                         ]
                     }
-                },
-                {
-                    "name": "[*] 资源管理器",
-                    "description": "文件管理工具，用于浏览、管理和操作计算机中的文件、文件夹、磁盘驱动器以及网络资源，同时提供桌面、任务栏和开始菜单的图形界面支持。",
-                    "componentList": [
-                        {
-                            "name": "资源管理器(32位)",
-                            "path": {}
-                        }
-                    ]
                 }
             ]
-        },
+        }
+    ],
+    "isoComponentList": [
         {
-            "name": "网络"
-        },
-        {
-            "name": "驱动程序"
-        },
-        {
-            "name": "硬件支持"
-        },
-        {
-            "name": "编程接口与通讯协议",
-            "description": "包含系统编程接口、通讯协议、功能支持等。非深度定制不建议移除。",
+            "name": "ISO镜像",
+            "description": "ISO镜像中的组件。",
             "componentList": [
                 {
-                    "name": "[*] Windows Event Log API",
-                    "description": "访问和管理 Windows 事件日志的编程接口。",
-                    "link": [
-                        "https://learn.microsoft.com/zh-cn/windows/win32/wes/windows-event-log-functions"
-                    ],
-                    "path": {
-                        "e": [
-                            "wevtapi"
-                        ],
-                        "sxs": [
-                            "eventlog-api"
-                        ]
-                    }
-                },
-                {
-                    "name": "[*] Windows Multimedia Library",
-                    "description": "音频播放、录音、MIDI 设备控制等多媒体功能的支持。",
-                    "link": [
-                        ""
-                    ],
-                    "path": {
-                        "e": [
-                            "winmm"
-                        ],
-                        "sxs": [
-                            "winmmbase"
-                        ]
-                    }
-                },
-                {
-                    "name": "[+] Windows NT ASN.1 Library",
-                    "description": "ASN.1 是一种用于描述数据结构的标准，广泛应用于网络协议、加密和安全领域。",
-                    "link": [
-                        ""
-                    ],
-                    "path": {
-                        "e": [
-                            "ntasn1"
-                        ],
-                        "sxs": []
-                    }
-                },
-                {
-                    "name": "[+] Windows CryptoAPI(Cryptographic)",
-                    "description": "加密、解密、数字签名和证书管理。",
-                    "msg": [
-                        3
-                    ],
+                    "name": "Support",
+                    "description": "一些辅助工具，不影响系统安装。",
                     "componentList": [
                         {
-                            "name": "[*] SSL/TLS",
-                            "description": "提供安全通道(SSL/TLS)支持，用于加密网络通信。",
+                            "name": "编码转换器(GB2U)",
+                            "description": "GB18030-2000 与 Unicode相互转换的工具。",
                             "path": {
                                 "e": [
-                                    "schannel"
+                                    "support\\tools\\gbunicnv.exe"
                                 ]
                             }
                         },
                         {
-                            "name": "[*] RSA 加密",
-                            "description": "提供 RSA 加密算法的实现。",
-                            "msg": [
-                                4
-                            ],
+                            "name": "Windows Easy Transfer(migwiz)",
+                            "description": "用户数据迁移工具",
                             "path": {
-                                "e": [
-                                    "rsaenh"
+                                "dir": [
+                                    "support\\migwiz"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ETW Event Resources",
+                            "description": "ETW事件监视资源。",
+                            "path": {
+                                "dir": [
+                                    "support\\logging"
                                 ]
                             }
                         }
                     ]
                 },
                 {
-                    "name": "[*] ",
-                    "description": "",
-                    "link": [
-                        ""
-                    ],
+                    "name": "Upgrade",
+                    "description": "包含从旧版本 Windows 升级所需的文件（如版本校验、兼容性检查等）。",
                     "path": {
-                        "e": [],
-                        "sxs": []
+                        "dir": [
+                            "upgrade"
+                        ]
+                    },
+                    "componentList": [
+                        {
+                            "name": ".Netfx",
+                            "componentList": [
+                                {
+                                    "name": "NetFxUpdate",
+                                    "path": {
+                                        "e": [
+                                            "upgrade\\netfx\\netfxupdate.exe"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "name": ".NET Framework 1.1",
+                                    "path": {
+                                        "e": [
+                                            "upgrade\\netfx\\ *.msi",
+                                            "upgrade\\netfx\\ *.msp",
+                                            "upgrade\\netfx\\ *.cab"
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Sources",
+                    "description": "Windows 安装目录",
+                    "componentList": [
+                        {
+                            "name": "组件库(sxs)",
+                            "path": {
+                                "dir": [
+                                    "sources\\sxs"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "版本配置(EI.CFG)",
+                            "description": "此选项移除 Sources目录下的 ei.cfg文件，如果删除此文件并且最终映像中包含多个 Windows 版本，安装过程中会出现 Windows 版本选择对话框，如果安装过程中出现提示找不到用户许可协议之类的错误，请从原始光盘中恢复此文件，通常即可解决问题.",
+                            "path": {
+                                "e": [
+                                    "sources\\EI.CFG"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "许可声明",
+                            "path": {
+                                "dir": [
+                                    "sources\\license"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "安装程序(setup.exe)",
+                    "path": {
+                        "e": [
+                            "setup.exe",
+                            "autorun.inf"
+                        ]
+                    }
+                },
+                {
+                    "name": "Memory Diagnostic",
+                    "description": "内存诊断",
+                    "path": {
+                        "e": [
+                            "boot\\memtest"
+                        ]
+                    }
+                },
+                {
+                    "name": "引导扇区操作工具",
+                    "path": {
+                        "e": [
+                            "boot\\bootsect"
+                        ]
                     }
                 }
             ]
-        },
+        }
+    ],
+    "Cleanup": [
         {
-            "name": "其他",
-            "description": "包含部分消息表资源",
-            "componentList": []
+            "path": [
+                "parent:{path} Windows\\System32\\config\\ *.LOG1",
+                "parent:{path} Windows\\System32\\config\\ *.LOG2"
+            ]
         }
     ]
 }
