@@ -56,21 +56,51 @@
         },
         "lang": {
             "path": [
-                "folder:{path}Windows\\System32\\{key}"
+                "folder:{path}Program Files\\Common Files\\microsoft shared\\ink {key}",
+                "folder:parent:{path}Windows\\ {key}",
+                "folder:{path}Windows\\Boot\\EFI {key}",
+                "folder:{path}Windows\\Boot\\EFI_EX {key}",
+                "folder:{path}Windows\\Boot\\PCAT {key}",
+                "folder:{path}Windows\\System32 {key}",
+                "folder:{path}Windows\\SysWOW64 {key}",
+                "{path}Windows\\SystemApps {key}",
+                "{path}Windows\\BitLockerDiscoveryVolumeContents {key}"
+            ],
+            "reg": [
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners",
+                    "search": [
+                        "{key}"
+                    ],
+                    "command": "delete"
+                }
             ]
         },
         "search": [
+            "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Services",
             "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\Components",
             "HKEY_LOCAL_MACHINE\\COMPONENTS\\DerivedData\\VersionedIndex\\{WinBuild}\\ComponentFamilies",
-            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners"
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\Winners",
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageIndex",
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect"
         ],
+        "startMenu":{
+            "path": [
+                "{path}ProgramData\\Microsoft\\Windows\\Start Menu\\Programs {key}.lnk"
+            ]
+        },
         "sys64": {
             "path": [
-                "{path}ProgramData\\Microsoft\\Windows\\Start Menu\\ {key}?.",
                 "{path}ProgramData\\Microsoft\\UEV\\ {key}",
                 "parent:{path}Windows\\System32\\ {key}",
                 "{path}Windows\\System32\\ {key}*.mui",
                 "{path}Windows\\SystemResources {key}"
+            ]
+        },
+        "sys32": {
+            "path": [
+                "parent:{path}Windows\\SysWOW64\\ {key}",
+                "{path}Windows\\SysWOW64\\ {key}*.mui"
             ]
         },
         "pkg64": {
@@ -84,14 +114,16 @@
                     "search": [
                         "{key}",
                         "amd64"
-                    ]
+                    ],
+                    "command": "delete"
                 },
                 {
                     "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect",
                     "search": [
                         "{key}",
                         "amd64"
-                    ]
+                    ],
+                    "command": "delete"
                 }
             ]
         },
@@ -106,41 +138,39 @@
                     "search": [
                         "{key}",
                         "wow64"
-                    ]
+                    ],
+                    "command": "delete"
                 },
                 {
                     "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect",
                     "search": [
                         "{key}",
                         "wow64"
-                    ]
+                    ],
+                    "command": "delete"
                 },
                 {
                     "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageIndex",
                     "search": [
                         "{key}",
                         "x86"
-                    ]
+                    ],
+                    "command": "delete"
                 },
                 {
                     "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\PackageDetect",
                     "search": [
                         "{key}",
                         "x86"
-                    ]
+                    ],
+                    "command": "delete"
                 }
-            ]
-        },
-        "sys32": {
-            "path": [
-                "parent:{path}Windows\\SysWOW64\\ {key}|{key}.mui"
             ]
         },
         "sxs64": {
             "path": [
                 "folder:{path}Windows\\WinSxS\\ amd64 {key}",
-                "{path}Windows\\WinSxS\\Manifests\\ amd64 {key}",
-                "{path}Windows\\WinSxS\\FileMaps\\ {key}"
+                "{path}Windows\\WinSxS\\ amd64 {key} .manifest"
             ],
             "reg": [
                 {
@@ -176,8 +206,8 @@
             "path": [
                 "folder:{path}Windows\\WinSxS\\x86 {key}",
                 "folder:{path}Windows\\WinSxS\\wow64 {key}",
-                "{path}Windows\\WinSxS\\Manifests\\x86 {key}",
-                "{path}Windows\\WinSxS\\Manifests\\wow64 {key}"
+                "{path}Windows\\WinSxS\\ x86 {key} .manifest",
+                "{path}Windows\\WinSxS\\ wow64 {key} .manifest"
             ],
             "reg": [
                 {
@@ -231,6 +261,17 @@
                     "search": [
                         "{key}",
                         "x86"
+                    ],
+                    "command": "delete"
+                }
+            ]
+        },
+        "service": {
+            "reg": [
+                {
+                    "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Services",
+                    "search": [
+                        "{key}"
                     ],
                     "command": "delete"
                 }
@@ -282,7 +323,8 @@
                     ]
                 },
                 {
-                    "name": "许可",
+                    "name": "Licenses",
+                    "display": "许可",
                     "description": null,
                     "path": {
                         "dir": [
@@ -293,8 +335,544 @@
             ]
         },
         {
-            "name": "System",
-            "display": "系统",
+            "name": "Users",
+            "display": "用户数据",
+            "componentList": [
+                {
+                    "name": "Public",
+                    "display": "公共",
+                    "componentList": [
+                        {
+                            "name": "Sample Music",
+                            "display": "示例音乐",
+                            "path": {
+                                "dir": [
+                                    "Users\\Public\\Music\\Sample Music"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Sample Videos",
+                            "display": "示例视频",
+                            "path": {
+                                "dir": [
+                                    "Users\\Public\\Videos\\Sample Videos"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Sample Pictures",
+                            "display": "示例图片",
+                            "path": {
+                                "dir": [
+                                    "Users\\Public\\Pictures\\Sample Pictures"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Windows Application",
+            "display": "系统应用(Program Files)",
+            "description": "Windows系统预装的应用（Win32）。",
+            "componentList": [
+                {
+                    "name": "Windows Media Player",
+                    "display": "媒体播放器",
+                    "path": {
+                        "dir": [
+                            "Program Files\\Windows Media Player"
+                        ],
+                        "sys64": [
+                            "msmpeg2vdec.dll",
+                            "msvidctl.dll",
+                            "WMASF.DLL",
+                            "WMADMOD.DLL",
+                            "WMADMOE.DLL",
+                            "WmpDui.dll",
+                            "wmploc.DLL",
+                            "wmpdxm.dll",
+                            "wmpeffects.dll",
+                            "WMPhoto.dll",
+                            "wmpshell.dll",
+                            "wmpps.dll",
+                            "WMNetMgr.dll",
+                            "WMPDMC.exe",
+                            "wmp.dll",
+                            "WMVSDECD.DLL",
+                            "WMSPDMOD.DLL",
+                            "WMVSENCD.DLL",
+                            "wmvdspa.dll",
+                            "WMSPDMOE.DLL",
+                            "WMVXENCD.DLL",
+                            "WMVCORE.DLL",
+                            "WMVDECOD.DLL",
+                            "WMVENCOD.DLL"
+                        ],
+                        "startMenu": [
+                            "Windows Media Player"
+                        ]
+                    },
+                    "componentList": [
+                        {
+                            "name": "Windows Media Player - 32-bit",
+                            "display": "媒体播放器 - 32位",
+                            "path": {
+                                "dir": [
+                                    "Program Files (x86)\\Windows Media Player"
+                                ],
+                                "sys32": [
+                                    "WMPhoto.dll",
+                                    "WMSPDMOD.dll"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Localization",
+            "display": "本地化",
+            "description": "语言、字体和输入法等本土化内容。",
+            "componentList": [
+                {
+                    "name": "Languages",
+                    "display": "语言",
+                    "componentList": [
+                        {
+                            "name": "Arabic (ar-SA)",
+                            "display": "阿拉伯语（沙特阿拉伯）",
+                            "path": {
+                                "lang": [
+                                    "ar-sa"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Basque (Basque)",
+                            "display": "巴斯克语（西班牙巴斯克）",
+                            "path": {
+                                "lang": [
+                                    "en-es"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Bulgarian (bg-BG)",
+                            "display": "保加利亚语（保加利亚）",
+                            "path": {
+                                "lang": [
+                                    "bg-bg"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Chinese Simplified (zh-CN)",
+                            "display": "简体中文（中国）",
+                            "path": {
+                                "lang": [
+                                    "zh-cn"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Chinese Traditional (zh-Hant)",
+                            "display": "繁体中文（中国）",
+                            "path": {
+                                "lang": [
+                                    "zh-tw",
+                                    "zh-hans"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Croatian (hr-HR)",
+                            "display": "克罗地亚语（克罗地亚）",
+                            "path": {
+                                "lang": [
+                                    "hr-hr"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Czech (cs-CZ)",
+                            "display": "捷克语（捷克）",
+                            "path": {
+                                "lang": [
+                                    "cs-cz"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Danish (da-DK)",
+                            "display": "丹麦语（丹麦）",
+                            "path": {
+                                "lang": [
+                                    "da-dk"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Dutch (nl-NL)",
+                            "display": "荷兰语（荷兰）",
+                            "path": {
+                                "lang": [
+                                    "nl-nl"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "English (en-US)",
+                            "display": "英语（美国）",
+                            "path": {
+                                "lang": [
+                                    "en-us"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "English (en-GB)",
+                            "display": "英语（英国）",
+                            "path": {
+                                "lang": [
+                                    "en-gb"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Estonian (et-EE)",
+                            "display": "爱沙尼亚语（爱沙尼亚）",
+                            "path": {
+                                "lang": [
+                                    "et-ee"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Finnish (fi-FI)",
+                            "display": "芬兰语（芬兰）",
+                            "path": {
+                                "lang": [
+                                    "fi-fi"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "French (fr-FR)",
+                            "display": "法语（法国）",
+                            "path": {
+                                "lang": [
+                                    "fr-fr"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "French (fr-CA)",
+                            "display": "法语（加拿大）",
+                            "path": {
+                                "lang": [
+                                    "fr-ca"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Galician (gl-ES)",
+                            "display": "加里西亚语（西班牙加里西亚）",
+                            "path": {
+                                "lang": [
+                                    "gl-es"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "German (de-DE)",
+                            "display": "德语（德国）",
+                            "path": {
+                                "lang": [
+                                    "de-de"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Greek (el-GR)",
+                            "display": "希腊语（希腊）",
+                            "path": {
+                                "lang": [
+                                    "el-gr"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Hebrew (he-IL)",
+                            "display": "希伯来语（以色列）",
+                            "path": {
+                                "lang": [
+                                    "he-il"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Hungarian (hu-HU)",
+                            "display": "匈牙利语（匈牙利）",
+                            "path": {
+                                "lang": [
+                                    "hu-hu"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Indonesian (id-ID)",
+                            "display": "印度尼西亚语（印度尼西亚）",
+                            "path": {
+                                "lang": [
+                                    "id-id"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Italian (it-IT)",
+                            "display": "意大利语（意大利）",
+                            "path": {
+                                "lang": [
+                                    "it-it"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Japanese (ja-JP)",
+                            "display": "日语（日本）",
+                            "path": {
+                                "lang": [
+                                    "ja-jp"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Korean (ko-KR)",
+                            "display": "韩语（韩国）",
+                            "path": {
+                                "lang": [
+                                    "ko-kr"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Latvian (lv-LV)",
+                            "display": "拉脱维亚语（拉脱维亚）",
+                            "path": {
+                                "lang": [
+                                    "lv-lv"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Lithuanian (lt-LT)",
+                            "display": "立陶宛语（立陶宛）",
+                            "path": {
+                                "lang": [
+                                    "lt-lt"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Norwegian (nb-NO)",
+                            "display": "挪威语（挪威）",
+                            "path": {
+                                "lang": [
+                                    "nb-no"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Polish (pl-PL)",
+                            "display": "波兰语（波兰）",
+                            "path": {
+                                "lang": [
+                                    "pl-pl"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Portuguese (pt-BR)",
+                            "display": "葡萄牙语（巴西）",
+                            "path": {
+                                "lang": [
+                                    "pt-br"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Portuguese (pt-PT)",
+                            "display": "葡萄牙语（葡萄牙）",
+                            "path": {
+                                "lang": [
+                                    "pt-pt"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Romanian (ro-RO)",
+                            "display": "罗马尼亚语（罗马尼亚）",
+                            "path": {
+                                "lang": [
+                                    "ro-ro"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Russian (ru-RU)",
+                            "display": "俄语（俄罗斯）",
+                            "path": {
+                                "lang": [
+                                    "ru-ru"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Serbian (sr-Latn-RS)",
+                            "display": "塞尔维亚语（塞尔维亚，拉丁字母）",
+                            "path": {
+                                "lang": [
+                                    "sr-latn-rs"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Slovak (sk-SK)",
+                            "display": "斯洛伐克语（斯洛伐克）",
+                            "path": {
+                                "lang": [
+                                    "sk-sk"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Slovenian (sl-SI)",
+                            "display": "斯洛文尼亚语（斯洛文尼亚）",
+                            "path": {
+                                "lang": [
+                                    "sl-si"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Spanish (es-ES)",
+                            "display": "西班牙语（西班牙）",
+                            "path": {
+                                "lang": [
+                                    "es-es"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Spanish (es-MX)",
+                            "display": "西班牙语（墨西哥）",
+                            "path": {
+                                "lang": [
+                                    "es-mx"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Swedish (sv-SE)",
+                            "display": "瑞典语（瑞典）",
+                            "path": {
+                                "lang": [
+                                    "sv-se"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Thai (th-TH)",
+                            "display": "泰语（泰国）",
+                            "path": {
+                                "lang": [
+                                    "th-th"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Turkish (tr-TR)",
+                            "display": "土耳其语（土耳其）",
+                            "path": {
+                                "lang": [
+                                    "tr-tr"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Ukrainian (uk-UA)",
+                            "display": "乌克兰语（乌克兰）",
+                            "path": {
+                                "lang": [
+                                    "uk-ua"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Vietnamese (vi-VN)",
+                            "display": "越南语（越南）",
+                            "path": {
+                                "lang": [
+                                    "vi-vn"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "IME",
+                    "display": "输入法编辑器",
+                    "description": "某些东亚语言的复杂字符支持需要此组件。",
+                    "componentList": [
+                        {
+                            "name": "Japanese(IME)",
+                            "display": "日语(IME)",
+                            "path": {
+                                "dir": [
+                                    "Windows\\IME\\ IMEJP",
+                                    "Windows\\System32\\IME\\ IMEJP",
+                                    "Windows\\SysWOW64\\IME\\ IMEJP",
+                                    "Windows\\System32\\InputMethod\\ JPN",
+                                    "Windows\\SysWOW64\\InputMethod\\ JPN"
+                                ],
+                                "pkg64": [
+                                    "Microsoft-OneCore-IME-Japanese",
+                                    "Microsoft-Windows-IME-Inbox-ja-jp"
+                                ],
+                                "pkg32": [
+                                    "Microsoft-OneCore-IME-Japanese",
+                                    "Microsoft-Windows-IME-Inbox-ja-jp"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Keyboard Layout",
+                    "display": "键盘布局",
+                    "description": "键盘布局决定了按键与输入字符的对应关系。（例如：美式键盘按 Shift+2 输出 @，而英式键盘输出 ）",
+                    "componentList": [
+                        {
+                            "name": "Japanese Keyboard Layout",
+                            "display": "日语(KBD)",
+                            "path": {
+                                "e": [
+                                    "Windows\\System32\\ KBDJPN.DLL",
+                                    "Windows\\SysWOW64\\ KBDJPN.DLL"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "System Component",
+            "display": "系统组件",
             "description": "系统组件",
             "componentList": [
                 {
@@ -315,6 +893,9 @@
                                     "notepad"
                                 ],
                                 "sxs64": [
+                                    "notepad"
+                                ],
+                                "startMenu": [
                                     "notepad"
                                 ]
                             }
@@ -344,11 +925,11 @@
                         },
                         {
                             "name": "MsftEdit Control - 32-bit",
-                            "display": "富文本编辑控件",
+                            "display": "富文本编辑控件 - 32-bit",
                             "componentList": [
                                 {
                                     "name": "Notepad - 32-bit",
-                                    "display": "记事本",
+                                    "display": "记事本 - 32-bit",
                                     "arch": {
                                         "type": "intel",
                                         "bit": 32
@@ -364,7 +945,7 @@
                                 },
                                 {
                                     "name": "WordPad - 32-bit",
-                                    "display": "写字板",
+                                    "display": "写字板 - 32-bit",
                                     "arch": {
                                         "type": "intel",
                                         "bit": 32
@@ -373,14 +954,11 @@
                                         "dir": [
                                             "Program Files (x86)\\Windows NT\\Accessories"
                                         ],
-                                        "sys64": [
+                                        "sys32": [
                                             "write.exe",
                                             "wordpad"
                                         ],
                                         "sxs32": [
-                                            "wordpad"
-                                        ],
-                                        "pkg32": [
                                             "wordpad"
                                         ]
                                     }
@@ -402,6 +980,34 @@
                             "bootux"
                         ]
                     }
+                },
+                {
+                    "name": "Windows Update",
+                    "display": "Windows 更新",
+                    "componentList": [
+                        {
+                            "name": "Windows Update AutoUpdate",
+                            "display": "Windows 自动更新(WUAU)",
+                            "path": {
+                                "sys64": [
+                                    "updateagent",
+                                    "wuapi",
+                                    "wuapihost",
+                                    "wuauclt",
+                                    "wuaueng",
+                                    "wucltux",
+                                    "WindowsAnytimeUpgrade",
+                                    "WindowsAnytimeUpgradeResults",
+                                    "WindowsAnytimeUpgradeui"
+                                ],
+                                "service": [
+                                    "DoSvc",
+                                    "WaaSMedicSvc",
+                                    "wuauserv"
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         }
